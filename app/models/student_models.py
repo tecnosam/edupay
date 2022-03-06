@@ -8,6 +8,8 @@ class Student(db.Model):
 
     name = db.Column(db.String(200), nullable=False)
 
+    email = db.Column(db.String(100), unique=True, nullable=False)
+
     matric = db.Column(db.String(20), unique=True, nullable=False)
 
     pwd = db.Column(db.String(300), nullable=False)
@@ -19,5 +21,14 @@ class Student(db.Model):
     @staticmethod
     def auth(matric: str, pwd: str):
         _student = Student.query.filter_by(matric=matric, pwd=pwd).first()
+
+        return _student
+
+    @staticmethod
+    def add(name, email, matric, pwd):
+        _student = Student(name=name, email=email, matric=matric, pwd=pwd)
+
+        db.session.add(_student)
+        db.session.commit()
 
         return _student

@@ -16,10 +16,11 @@
   <link href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{url_for('static', filename='css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
+  <script src="https://js.paystack.co/v1/inline.js"></script>
 {% endmacro %}
 
 {% macro scripts() %}
-
+  <script src="{{url_for('static', filename='paystack.js')}}"></script>
   <script src="{{url_for('static', filename='js/core/popper.min.js')}}"></script>
   <script src="{{url_for('static', filename='js/core/bootstrap.min.js')}}"></script>
   <script src="{{url_for('static', filename='js/plugins/perfect-scrollbar.min.js')}}"></script>

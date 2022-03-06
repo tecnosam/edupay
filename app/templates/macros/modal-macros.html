@@ -47,3 +47,20 @@
 
     </div>
 {% endmacro %}
+
+{% macro place_order(products) %}
+
+    <select class="form-control">
+     
+        <option value="">-- Select an Option --</option>
+
+        {% for product in products %}
+            <option value="{{product.id}}">{{product.name}}</option>
+        {% endfor %}
+
+    </select>
+
+    <br />
+
+    <button class="btn btn-primary form-control" onclick="payWithPaystack()">Pay</button>
+{% endmacro %}
