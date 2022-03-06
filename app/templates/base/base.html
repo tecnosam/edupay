@@ -1,0 +1,46 @@
+{% from 'macros/base-macros.html' import header, scripts %}
+{% from 'macros/sidebar-macros.html' import sidebar %}
+{% from 'macros/navbar-macros.html' import navbar %}
+{% from 'macros/modal-macros.html' import modal %}
+{% from 'macros/form-macros.html' import form %}
+
+<html lang="en">
+
+    <head>
+        <title>
+            EduPay - {% block window_title %} Welcome {% endblock window_title %}
+        </title>
+
+        {{ header() }}
+    </head>
+
+    <body class="g-sidenav-show  bg-gray-100">
+
+        {{ modal('edit_profile', "Edit Profile") }}
+
+        {% block sidebar_stage %}
+            {{ sidebar() }}
+        {% endblock sidebar_stage %}
+
+        {% block main_stage %}
+
+            <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    
+                {% block navbar_stage %}
+                    {{navbar()}}
+                {% endblock navbar_stage %}
+    
+                <div class="container-fluid py-4">
+                    {% block content %}
+
+                    {% endblock content %}
+                </div>
+
+            </main>
+
+        {% endblock main_stage %}
+
+        {{scripts()}}
+    </body>
+
+</html>

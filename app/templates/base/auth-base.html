@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block sidebar_stage %}{% endblock sidebar_stage %}
+{% block navbar_stage %}{% endblock navbar_stage %}
+
+{% block main_stage %}
+
+    <main class="main-content  mt-0">
+
+        <section>
+
+            <div class="page-header min-vh-75">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                            
+                            {% block content %}
+                                
+                            {% endblock content %}
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+
+                                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/static/img/curved-images/curved6.jpg')"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            
+            </div>
+        
+        </section>
+    
+    </main>
+{% endblock main_stage %}
