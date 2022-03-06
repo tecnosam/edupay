@@ -3,11 +3,6 @@ from app import db
 from datetime import datetime
 
 
-neutral_status = ['PROCESSING', 'COLLECTED']
-positive_status = ['APPROVED', 'READY']
-negative_status = ['DISAPPROVED', 'CANCELLED']
-
-
 class Status(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

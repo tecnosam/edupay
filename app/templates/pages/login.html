@@ -1,5 +1,6 @@
 {% extends 'base/auth-base.html' %}
 {% from 'macros/form-macros.html' import input %}
+{% from 'macros/base-macros.html' import flash_messages %}
 
 
 {% block content %}
@@ -17,10 +18,8 @@
         <div class="card-body">
 
             <form role="form" action="" method='POST'>
-
-                {% for msg in get_flashed_messages() %}
-                    <p onclick="$(this).remove()">{{msg}}</p>
-                {% endfor %}
+                
+                {{ flash_messages() }}
 
                 {{ input('Matric No', 'text', 'matric') }}
                 {{ input('Password', 'password', 'pass') }}

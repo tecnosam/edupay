@@ -28,7 +28,7 @@
   <script src="{{url_for('static', filename='js/plugins/chartjs.min.js')}}"></script>
 
   <script>
-      var win = navigator.platform.indexOf('Win') > -1;
+    var win = navigator.platform.indexOf('Win') > -1;
       if (win && document.querySelector('#sidenav-scrollbar')) {
         var options = {
           damping: '0.5'
@@ -42,4 +42,12 @@
   <script src="{{url_for('static', filename='js/soft-ui-dashboard.min.js?v=1.0.3')}}"></script>
   <script src="{{url_for('static', filename='jquery/jquery.js')}}"></script>
   <script src="{{url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+{% endmacro %}
+
+{% macro flash_messages() %}
+  
+  {% for msg in get_flashed_messages() %}
+    <p onclick="$(this).remove()">{{msg}}</p>
+  {% endfor %}
+
 {% endmacro %}

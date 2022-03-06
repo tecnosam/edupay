@@ -19,8 +19,8 @@
         <div class="form-group" action="javascript:void()">
 
             <div style="text-align: center; margin-top: 0%; margin-bottom: 5%">
-                <h5 class="mb-0 bold text-uppercase text-center">{{ title }}</h5>
-                
+                <h5 class="mb-2 bold text-uppercase text-center">{{ title }}</h5>
+
                 {{content}}
             </div>
 
@@ -46,21 +46,4 @@
         </div>
 
     </div>
-{% endmacro %}
-
-{% macro place_order(products) %}
-
-    <select class="form-control">
-     
-        <option value="">-- Select an Option --</option>
-
-        {% for product in products %}
-            <option value="{{product.id}}">{{product.name}}</option>
-        {% endfor %}
-
-    </select>
-
-    <br />
-
-    <button class="btn btn-primary form-control" onclick="payWithPaystack()">Pay</button>
 {% endmacro %}

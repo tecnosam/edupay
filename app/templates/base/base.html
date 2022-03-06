@@ -1,8 +1,9 @@
-{% from 'macros/base-macros.html' import header, scripts %}
+{% from 'macros/base-macros.html' import header, scripts, flash_messages %}
 {% from 'macros/sidebar-macros.html' import sidebar %}
 {% from 'macros/navbar-macros.html' import navbar %}
-{% from 'macros/modal-macros.html' import modal, place_order %}
+{% from 'macros/modal-macros.html' import modal %}
 {% from 'macros/form-macros.html' import form %}
+{% from 'macros/order-macros.html' import place_order %}
 
 <html lang="en">
 
@@ -16,10 +17,10 @@
 
     <body class="g-sidenav-show  bg-gray-100">
 
-        {{ modal('edit_profile', "Edit Profile") }}
-        {{ modal('place_order', "Place Order", place_order(products)) }}
 
         {% block sidebar_stage %}
+            {{ modal('edit_profile', "Edit Profile") }}
+            {{ modal('place_order', "Place Order", place_order(products)) }}
             {{ sidebar() }}
         {% endblock sidebar_stage %}
 
@@ -32,6 +33,7 @@
                 {% endblock navbar_stage %}
     
                 <div class="container-fluid py-4">
+                    {{ flash_messages() }}
                     {% block content %}
 
                     {% endblock content %}

@@ -28,7 +28,7 @@ order_fields = {
 student_fields = {
     'id': fields.Integer,
     'name': fields.String,
+    'email': fields.String,
     'matric': fields.String,
-    'orders': fields.Nested(order_fields),
     'date_created': fields.DateTime
 }

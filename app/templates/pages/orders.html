@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% from 'macros/table-macros.html' import table_head %}
+{% from 'macros/order-macros.html' import product_order %}
 
 {% block content %}
     
@@ -22,78 +23,11 @@
                         {{ table_head(["Product", "Price", "Order Status", "Date", ""]) }}
 
                         <tbody style="text-align: center;">
-
-                        <tr>
-                            <td>
-                                <p class="text-xs font-weight-bold mb-0">I.D Card</p>
-                            </td>
-
-                            <td>
-
-                                <p class="text-xs font-weight-bold mb-0">Manager</p>
-
-                            </td>
-
-                            <td class="align-middle text-center text-sm">
-
-                                <span class="badge badge-sm bg-gradient-primary">APPROVED</span>
-
-                            </td>
-
-                            <td class="align-middle text-center">
-
-                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-
-                            </td>
-
-                            <td class="align-middle">
-
-                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs">
-                                    Cancel
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                <p class="text-xs font-weight-bold mb-0">Transcript</p>
-                            </td>
-
-                            <td>
-
-                                <p class="text-xs font-weight-bold mb-0">Programator</p>
-
-                            </td>
-
-                            <td class="align-middle text-center text-sm">
-
-                                <span class="badge badge-sm bg-gradient-secondary">PROCESSING</span>
-
-                            </td>
-
-                            <td class="align-middle text-center">
-
-                                <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-
-                            </td>
-
-                            <td class="align-middle">
-
-                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-
-                                    Cancel
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
+                            {% for order in orders %}
+                                {{ product_order(order) }}
+                            {% endfor %}
                         </tbody>
-    
+
                     </table>
     
                 </div>
