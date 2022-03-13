@@ -20,9 +20,18 @@
 
         {% block sidebar_stage %}
 
+            {% set change_pass_form = [{'name': 'pwd', 'label': 'New Password'}] %}
+
+            {{ modal(
+                'edit_profile',
+                "Edit Profile", 
+                form(url_for('change_pwd'), change_pass_form, 'Save Changes', 'POST')
+            ) }}
+    
             {% if 'student_data' in session %}
-                {{ modal('edit_profile', "Edit Profile") }}
+
                 {{ modal('place_order', "Place Order", place_order(products)) }}
+
             {% elif 'staff_data' in session %}
 
                 {% set product_form = [

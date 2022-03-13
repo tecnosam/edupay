@@ -1,5 +1,5 @@
-{% set neutral_status = ['PROCESSING', 'COLLECTED'] %}
-{% set positive_status = ['APPROVED', 'READY'] %}
+{% set neutral_status = ['PROCESSING'] %}
+{% set positive_status = ['APPROVED', 'READY', 'COLLECTED'] %}
 {% set negative_status = ['DISAPPROVED', 'CANCELLED'] %}
 
 {% macro product_order(order, status_modes) %}
@@ -34,12 +34,6 @@
 
         <td class="align-middle text-center">
             <span class="text-secondary text-xs font-weight-bold">{{order.date_created}}</span>
-        </td>
-
-        <td class="align-middle">
-            <a href="javascript:;" class="text-secondary font-weight-bold text-xs">
-                Cancel
-            </a>
         </td>
     </tr>
 {% endmacro %}

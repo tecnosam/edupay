@@ -19,6 +19,11 @@
             <span class="ms-1 font-weight-bold">EduPay</span>
 
         </a>
+        {% if 'student_data' in session %}
+            <p class="text-xs text-center ms-1 font-weight-bold">{{session.student_data.name}}</p>
+        {% elif 'staff_data' in session %}
+            <p class="text-xs text-center ms-1 font-weight-bold">{{session.staff_data.name}}</p>
+        {% endif %}
 
     </div>
 {% endmacro %}
@@ -27,10 +32,10 @@
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
 
         <ul class="navbar-nav">
+            {{ sidebar_item('Edit Profile', '#edit_profile', 'modal') }}
             {% if 'student_data' in session %}
 
                 {{ sidebar_item('Orders', '/orders') }}
-                {{ sidebar_item('Edit Profile', '#edit_profile', 'modal') }}
                 {{ sidebar_item('Logout', '/logout') }}
 
                 {{ big_button("Place Order", "#place_order", "modal") }}

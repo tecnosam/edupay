@@ -32,3 +32,13 @@ class BusaryStaff(db.Model):
         db.session.commit()
 
         return _staff
+
+    @staticmethod
+    def change_pwd(staff_id: int, pwd: str):
+        _staff: BusaryStaff = BusaryStaff.query.get(staff_id)
+
+        if _staff is not None:
+            _staff.pwd = pwd
+            db.session.commit()
+
+        return _staff

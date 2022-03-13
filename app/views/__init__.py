@@ -11,7 +11,13 @@ def index():
     
     elif 'staff_data' in session:
         return redirect(url_for('products'))
-    
+
     return redirect(url_for('student_login'))
 
+@flask_app.route('/staff')
+def staff():
+    if 'staff_data' in session:
+        return redirect(url_for('index'))
+
+    return redirect(url_for('staff_login'))
 

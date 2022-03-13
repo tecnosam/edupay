@@ -32,3 +32,13 @@ class Student(db.Model):
         db.session.commit()
 
         return _student
+
+    @staticmethod
+    def change_pwd(student_id: int, pwd: str):
+        _student: Student = Student.query.get(student_id)
+
+        if _student is not None:
+            _student.pwd = pwd
+            db.session.commit()
+
+        return _student

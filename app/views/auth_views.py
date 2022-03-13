@@ -51,6 +51,32 @@ def staff_login():
 
     return render_template("pages/staff-login.html")
 
+@flask_app.route('/change-password', methods=['POST'])
+def change_pwd():
+    password = request.form['pwd']
+
+    if 'student_data' in session:
+
+        _student: Student = Student.change_pwd(session['student_data']['id'], password)
+        if _student is not None:
+            session['student_data']['pwd'] = _student.pwd
+            flash("Password changed successfully")
+        else:
+            flash("Error locating student data (NOT FOUND)")
+
+    elif 'staff_data' in session:
+
+        _staff: BusaryStaff = BusaryStaff.change_pwd(session['staff_data']['id'], password)
+
+        if _staff is not None:
+            session['staff_data']['pwd'] = _staff.pwd
+            flash("Password changed successfully")
+        else:
+            flash("Error locating bursary staff data (NOT FOUND)")
+
+    return redirect(url_for('index'))
+
+
 @flask_app.route('/logout')
 def logout():
     if 'student_data' in session:

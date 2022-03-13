@@ -61,13 +61,13 @@ def products():
 def change_order_status(order_id: int, status_id: int):
     if 'staff_data' not in session:
         redirect(url_for('staff_login'))
-    
+
     order: Order = Order.change_status(order_id, status_id)
 
     if order is not None:
         flash("Successfully changed status")
     else:
         flash("Error locating order")
-    
+
     return redirect(url_for('orders'))
 
