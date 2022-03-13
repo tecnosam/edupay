@@ -18,9 +18,20 @@ class Order(db.Model):
 
     @staticmethod
     def add(product_id, student_id, paystack_ref):
-        _student = Order(product_id=product_id, student_id=student_id, paystack_ref=paystack_ref)
+        _order = Order(product_id=product_id, student_id=student_id, paystack_ref=paystack_ref)
 
-        db.session.add(_student)
+        db.session.add(_order)
         db.session.commit()
 
-        return _student
+        return _order
+    
+    @staticmethod
+    def change_status(product_id, status_id):
+        _order: Order = Order.query.get(product_id)
+
+        if _order is not None:
+            _order.status_id = status_id
+
+            db.session.commit()
+
+        return _order

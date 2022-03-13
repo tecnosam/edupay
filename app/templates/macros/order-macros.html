@@ -2,7 +2,16 @@
 {% set positive_status = ['APPROVED', 'READY'] %}
 {% set negative_status = ['DISAPPROVED', 'CANCELLED'] %}
 
-{% macro product_order(order) %}
+{% macro product_order(order, status_modes) %}
+    {% if 'student_data' in session %}
+        {{ student_view_order(order) }}
+    {% elif 'staff_data' in session %}
+        {{ staff_view_order(order, status_modes) }}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro student_view_order(order) %}
 
     <tr>
         <td>
@@ -32,6 +41,50 @@
                 Cancel
             </a>
         </td>
+    </tr>
+{% endmacro %}
+
+{% macro staff_view_order(order, status_modes) %}
+    
+    <tr>
+
+        <td>
+            <p class="text-xs font-weight-bold mb-0">{{order.student.matric}}</p>
+        </td>
+
+        <td>
+            <p class="text-xs font-weight-bold mb-0">{{order.product.name}}</p>
+        </td>
+
+        <td>
+            <p class="text-xs font-weight-bold mb-0">{{order.product.price}}</p>
+        </td>
+
+        <td>
+            <select class="text-xs font-weight-bold mb-0" onchange="location = this.value">
+                {% for status in status_modes %}
+                    <a>
+                    {% if status.id == order.status.id %}
+
+                        <option value="{{url_for('change_order_status', order_id=order.id, status_id=status.id)}}" selected>
+                            {{status.tag}}
+                        </option>
+
+                    {% else %}
+                        <option value="{{url_for('change_order_status', order_id=order.id, status_id=status.id)}}">
+                            {{status.tag}}
+                        </option>
+                    {% endif %}
+                    </a>
+
+                {% endfor %}
+            </select>
+        </td>
+
+        <td class="align-middle text-center">
+            <span class="text-secondary text-xs font-weight-bold">{{order.date_created}}</span>
+        </td>
+
     </tr>
 {% endmacro %}
 

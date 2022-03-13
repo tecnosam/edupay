@@ -1,12 +1,11 @@
-{% macro input(label, type, name) %}
-    
-    <label>{{label}}</label>
+{% macro input(field) %}
 
     <div class="mb-3">
 
-        <input type="{{type}}" class="form-control" 
-            placeholder="{{label}}" aria-label="{{label}}" 
-            aria-describedby="{{label}}-addon" name="{{name}}" />
+        <input type="{{field.type}}" class="form-control" 
+            placeholder="{{field.label}}" aria-label="{{field.label}}"
+            required="{{field.required}}" value="{{field.default}}"
+            aria-describedby="{{field.label}}-addon" name="{{field.name}}" />
 
     </div>
 {% endmacro %}
@@ -21,11 +20,17 @@
     </div>
 {% endmacro %}
 
-{% macro form(action, fields, submit_label) %}
-    <form role="form" action="{{action}}"> 
+{% macro form(action, fields, submit_label, method) %}
+
+    {% if method == 'PUT' %}
+        <form role="form" method="POST" action="{{action}}"> 
+            <input type='hidden' name='_method' value='PUT' />
+    {% else %}
+        <form role="form" method="{{method}}" action="{{action}}"> 
+    {% endif %}
 
         {% for field in fields %}
-            {{ input( field[0], field[1] ) }}
+            {{ input( field ) }}
         {% endfor %}
 
         <div class="text-center">

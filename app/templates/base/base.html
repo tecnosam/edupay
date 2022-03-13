@@ -19,9 +19,31 @@
 
 
         {% block sidebar_stage %}
-            {{ modal('edit_profile', "Edit Profile") }}
-            {{ modal('place_order', "Place Order", place_order(products)) }}
+
+            {% if 'student_data' in session %}
+                {{ modal('edit_profile', "Edit Profile") }}
+                {{ modal('place_order', "Place Order", place_order(products)) }}
+            {% elif 'staff_data' in session %}
+
+                {% set product_form = [
+                    {'name': 'name', 'type': 'text', 'required': "true", 'label': 'Name'},
+                    {'name': 'price', 'type': 'number', 'required': "true", 'label': 'Price'}
+                ]
+                %}
+
+                {{ modal(
+                    'upload_product', 
+                    'Upload Product', 
+                    form('/products', product_form, 'Upload Product', 'POST')
+                ) }}
+
+            {% endif %}
+
+            {% block more_modals %}
+            {% endblock more_modals %}
+
             {{ sidebar() }}
+
         {% endblock sidebar_stage %}
 
         {% block main_stage %}

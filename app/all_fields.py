@@ -25,10 +25,23 @@ order_fields = {
     'date_created': fields.DateTime
 }
 
+product_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'price': fields.Float,
+    'date_created': fields.DateTime,
+}
+
 student_fields = {
     'id': fields.Integer,
     'name': fields.String,
     'email': fields.String,
     'matric': fields.String,
     'date_created': fields.DateTime
+}
+
+staff_fields = {
+    'id': fields.Integer,
+    'name': fields.String,
+    'email': fields.String
 }

@@ -1,4 +1,4 @@
-name,price
-I.D Card,5000
-Transcript,4000
-Application Form,2000
+name,price,uploaded_by
+I.D Card,5000,1
+Transcript,4000,1
+Application Form,2000,2

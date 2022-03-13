@@ -1,35 +1,33 @@
 from app.models.student_models import Student
 from app.models.product_models import Product
+from app.models.busary_models import BusaryStaff
 from app import db
 import sqlalchemy
 import csv
 
 
-def csv_load_wrapper(fn, func):
+def csv_load_wrapper(fn, table):
 
     with open(fn, 'r') as f:
         rows = f.readlines()
         rows.pop(0)  # remove header
+        print("Table - ", table)
         for row in csv.reader(rows):
-            func(row)
+            load_test(row, table)
     
     return
 
 
-def load_test_students(row):
-    try:
-        Student.add(*row)
-    except sqlalchemy.exc.IntegrityError:
-        db.session.rollback()
+tables = {'student': Student, 'staff': BusaryStaff, 'product': Product}
 
-
-def load_test_products(row):
+def load_test(row, table):
     try:
-        Product.add(*row)
+        tables[table].add(*row)
     except sqlalchemy.exc.IntegrityError:
         db.session.rollback()
 
 
 def load_all():
-    csv_load_wrapper("app/test/products.csv", load_test_products)
-    csv_load_wrapper("app/test/students.csv", load_test_students)
+    csv_load_wrapper("app/test/products.csv", "product")
+    csv_load_wrapper("app/test/students.csv", "student")
+    csv_load_wrapper("app/test/staff.csv", "staff")

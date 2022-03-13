@@ -1,8 +1,8 @@
 
-function payWithPaystack(product, email='ikabolo59@gmail.com'){
+function payWithPaystack(product, email){
     var handler = PaystackPop.setup({
         key: 'pk_test_631c0885f9a110b544cf365840fbb474d90314f4',
-        email: email, // TODO: change to users email
+        email: email,
         amount: product.amount*100,  // must be in KOBO
         metadata: {
             custom_fields: [
@@ -10,6 +10,11 @@ function payWithPaystack(product, email='ikabolo59@gmail.com'){
                     display_name: "Product Name",
                     variable_name: "product_name",
                     value: product.name
+                },
+                {
+                    display_name: "Product Price",
+                    variable_name: "amount_paid",
+                    value: product.amount
                 },
             ]
         },

@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% from 'macros/table-macros.html' import table_head %}
+{% from 'macros/product-macros.html' import product_info %}
+{% from 'macros/modal-macros.html' import edit_product %}
+
+{% block more_modals %}
+
+    {% for product in products %}
+        {{ edit_product(product) }}
+    {% endfor %}
+
+{% endblock more_modals %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+
+    <div class="card mb-4">
+        <div class="card-header pb-0 text-center">
+        
+            <h6>Products</h6>
+        </div>
+
+        <div class="card-body px-0 pt-0 pb-2">
+        
+            <div class="table-responsive p-0">
+        
+                <table class="table align-items-center mb-0">
+        
+                    {{ table_head(["Product", "Price", "Date"]) }}
+
+                    <tbody style="text-align: center;">
+                        {% for product in products %}
+                            {{ product_info(product) }}
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+{% endblock content %}

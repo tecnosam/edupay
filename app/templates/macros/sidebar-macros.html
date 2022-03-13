@@ -12,7 +12,7 @@
 
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
-        <a class="navbar-brand m-0" href="" target="_blank">
+        <a class="navbar-brand m-0" href="#" target="_blank">
 
             <img src="{{url_for('static', filename='img/logo-ct.png')}}" class="navbar-brand-img h-100" alt="main_logo">
 
@@ -23,21 +23,28 @@
     </div>
 {% endmacro %}
 
-{% macro sidebar_body() %}
+{% macro sidebar_body(type) %}
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
 
         <ul class="navbar-nav">
+            {% if 'student_data' in session %}
 
-            {{ sidebar_item('Orders', '/orders') }}
-            {{ sidebar_item('Edit Profile', '#edit_profile', 'modal') }}
-            {{ sidebar_item('Logout', '/logout') }}
+                {{ sidebar_item('Orders', '/orders') }}
+                {{ sidebar_item('Edit Profile', '#edit_profile', 'modal') }}
+                {{ sidebar_item('Logout', '/logout') }}
 
-            <hr class="horizontal dark mt-0" />
+                {{ big_button("Place Order", "#place_order", "modal") }}
 
-            <li class="nav-item">
-                <a class="btn bg-gradient-primary mt-4 w-100" 
-                    data-toggle="modal" href="#place_order" type="button">Place Order</a>
-            </li>
+            {% elif 'staff_data' in session %}
+
+                {{ sidebar_item('Orders', '/orders') }}
+                {{ sidebar_item('Products', '/products') }}
+                {{ sidebar_item('Logout', '/logout') }}
+
+                {{ big_button("Upload Product", "#upload_product", "modal") }}
+
+            {% endif %}
+
 
         </ul>
 
@@ -86,4 +93,16 @@
 
         </svg>
     </div>
+{% endmacro %}
+
+{% macro big_button(tag, link, toggle) %}
+    
+    <hr class="horizontal dark mt-0" />
+
+    <li class="nav-item">
+        <a class="btn bg-gradient-primary mt-4 w-100" 
+            data-toggle="{{toggle}}" href="{{link}}" type="button">
+            {{ tag }}
+        </a>
+    </li>
 {% endmacro %}

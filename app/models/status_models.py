@@ -11,7 +11,7 @@ class Status(db.Model):
 
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
-    orders = db.relationship('Order', backref='status', passive_deletes=True)
+    orders = db.relationship('Order', backref='status', lazy=True, passive_deletes=True)
 
     @staticmethod
     def add(tag: str):

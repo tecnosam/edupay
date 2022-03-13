@@ -21,8 +21,8 @@
                 
                 {{ flash_messages() }}
 
-                {{ input('Matric No', 'text', 'matric') }}
-                {{ input('Password', 'password', 'pass') }}
+                {{ input({'label': 'Matric No', 'type':'text', 'name':'matric'}) }}
+                {{ input({'label': 'Password', 'type': 'password', 'name': 'pass'}) }}
 
                 <div class="text-center">
 
