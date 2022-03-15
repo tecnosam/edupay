@@ -81,9 +81,7 @@ def change_pwd():
 def logout():
     if 'student_data' in session:
         session.pop('student_data')
-        return redirect(url_for('student_login'))
     if 'staff_data' in session:
         session.pop('staff_data')
-        return redirect(url_for('staff_login'))
 
     return redirect('/')

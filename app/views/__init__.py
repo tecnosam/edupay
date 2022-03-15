@@ -8,7 +8,7 @@ from app.views.busary_view import *
 def index():
     if 'student_data' in session:
         return redirect(url_for('orders'))
-    
+
     elif 'staff_data' in session:
         return redirect(url_for('services'))
 

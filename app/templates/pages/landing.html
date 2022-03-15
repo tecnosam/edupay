@@ -4,7 +4,7 @@
 {% block navbar_stage %}{% endblock navbar_stage %}
 
 {% block body %}
-    <body class="g-sidenav-show  bg-gray-100">
+    <body class="g-sidenav-show  bg-gray-100" style="font-family: Arial;">
         <section class="min-vh-100">
 
             <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
@@ -22,9 +22,13 @@
                     </div>
 
                     <div class="row justify-content-center mx-auto">
-                        <a class="btn btn-lg btn-primary mt-4 ml-1 w-50 text-white" href="{{url_for('student_login')}}">Student Login</a>
+                        <a class="btn btn-lg btn-primary mt-4 ml-1 w-50 text-white" href="{{url_for('student_login')}}">
+                            Student Login
+                        </a>
 
-                        <a class="btn btn-lg btn-white mt-4 ml-1 w-50" style="color:black" href="{{url_for('staff_login')}}">Staff Login</a>
+                        <a class="btn btn-lg btn-white mt-4 ml-1 w-50" style="color:black" href="{{url_for('staff_login')}}">
+                            Busary Login
+                        </a>
                     </div>
                 </div>
 
