@@ -12,7 +12,7 @@ def index():
     elif 'staff_data' in session:
         return redirect(url_for('services'))
 
-    return redirect(url_for('student_login'))
+    return render_template('pages/landing.html')
 
 @flask_app.route('/staff')
 def staff():
@@ -21,3 +21,8 @@ def staff():
 
     return redirect(url_for('staff_login'))
 
+@flask_app.route("/students")
+def student():
+    if 'student_data' in session:
+        return redirect(url_for('orders'))
+    return redirect(url_for('student_login'))

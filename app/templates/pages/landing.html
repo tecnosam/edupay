@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block sidebar_stage %}{% endblock sidebar_stage %}
+{% block navbar_stage %}{% endblock navbar_stage %}
+
+{% block body %}
+    <body class="g-sidenav-show  bg-gray-100">
+        <section class="min-vh-100">
+
+            <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+                style="background: url('static/img/curved-images/curved14.jpg'); background-size: 100%;">
+
+                <span class="mask bg-gradient-dark opacity-6"></span>
+            
+                <div class="container">
+
+                    <div class="row justify-content-center">
+                      <div class="col-lg-5 text-center mx-auto">
+                        <h1 class="text-white mb-2 mt-5">BU pay!</h1>
+                        <p class="text-lead text-white">Welcome to BU pay. Pay for all your babcock educational services with ease</p>
+                      </div>
+                    </div>
+
+                    <div class="row justify-content-center mx-auto">
+                        <a class="btn btn-lg btn-primary mt-4 ml-1 w-50 text-white" href="{{url_for('student_login')}}">Student Login</a>
+
+                        <a class="btn btn-lg btn-white mt-4 ml-1 w-50" style="color:black" href="{{url_for('staff_login')}}">Staff Login</a>
+                    </div>
+                </div>
+
+            </div>
+        
+        </section>
+    </body>
+{% endblock body %}
