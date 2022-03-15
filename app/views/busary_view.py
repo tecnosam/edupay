@@ -4,7 +4,7 @@ from app import flask_app
 import sqlalchemy
 from app.models.order_models import Order
 
-from app.models.product_models import Product
+from app.models.service_models import Service
 
 
 @flask_app.route("/receipts")
@@ -14,8 +14,8 @@ def receipts():
 
     return redirect(url_for('orders'))
 
-@flask_app.route("/products", methods=['GET', 'POST'])
-def products():
+@flask_app.route("/services", methods=['GET', 'POST'])
+def services():
 
     if 'staff_data' not in session:
         return redirect(url_for('staff_login'))
@@ -29,32 +29,32 @@ def products():
         try:
 
             if method.upper() =='PUT':
-                product_id = request.form.get('id', 0)
-                _product = Product.edit(product_id, name, price)
+                service_id = request.form.get('id', 0)
+                _service = Service.edit(service_id, name, price)
 
             else:
-                _product = Product.add(name, price, session['staff_data']['id'])
+                _service = Service.add(name, price, session['staff_data']['id'])
 
-            if _product is not None:
-                flash("Successfully uploaded product/service")
+            if _service is not None:
+                flash("Successfully uploaded service/service")
             else:
-                flash("There was an error locating this product")
+                flash("There was an error locating this service")
 
         except sqlalchemy.exc.IntegrityError:
             print("oops")
-            flash("A Product/Service with this name already exists")
+            flash("A Service/Service with this name already exists")
     elif 'pop' in request.args:
-        product_id = request.args['pop']
-        _product = Product.delete(product_id)
+        service_id = request.args['pop']
+        _service = Service.delete(service_id)
 
-        if _product is not None:
-            flash("Successfully deleted product/service")
+        if _service is not None:
+            flash("Successfully deleted service/service")
         else:
-            flash("There was an error locating this product")
+            flash("There was an error locating this service")
 
 
-    products = Product.query.all()
-    return render_template("pages/products.html", products=products)
+    services = Service.query.all()
+    return render_template("pages/services.html", services=services)
 
 
 @flask_app.route("/orders/<int:order_id>/change-status/<int:status_id>")

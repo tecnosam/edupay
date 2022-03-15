@@ -1,14 +1,14 @@
 from requests import get
 from dotenv import load_dotenv
 import os
-from app.models.product_models import Product
+from app.models.service_models import Service
 from app.models.order_models import Order
 
 
 load_dotenv()
 
 
-def validate_payment(reference, product_id):
+def validate_payment(reference, service_id):
 
     url = f"https://api.paystack.co/transaction/verify/{reference}"
 
@@ -22,12 +22,12 @@ def validate_payment(reference, product_id):
     
     data = response.json()['data']
 
-    product = Product.query.get(product_id)
+    service = Service.query.get(service_id)
 
-    if product is None:
+    if service is None:
         return False
 
-    if (data['amount']/100 != product.price) or (data['status'] != 'success'):
+    if (data['amount']/100 != service.price) or (data['status'] != 'success'):
         return False
 
     return True

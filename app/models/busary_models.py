@@ -16,7 +16,7 @@ class BusaryStaff(db.Model):
 
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
-    products = db.relationship('Product', backref='staff', passive_deletes=True)
+    services = db.relationship('Service', backref='staff', passive_deletes=True)
 
     @staticmethod
     def auth(email: str, pwd: str):

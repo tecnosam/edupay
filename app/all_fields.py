@@ -10,7 +10,7 @@ order_fields = {
         'tag': fields.String
     }),
 
-    'product': fields.Nested({
+    'service': fields.Nested({
         'id': fields.Integer,
         'name': fields.String,
         'price': fields.Float
@@ -25,7 +25,7 @@ order_fields = {
     'date_created': fields.DateTime
 }
 
-product_fields = {
+service_fields = {
     'id': fields.Integer,
     'name': fields.String,
     'price': fields.Float,

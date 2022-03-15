@@ -2,7 +2,7 @@ from app import db
 from datetime import datetime
 
 
-class Product(db.Model):
+class Service(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
@@ -14,41 +14,41 @@ class Product(db.Model):
 
     date_created = db.Column(db.DateTime, default=datetime.utcnow())
 
-    orders = db.relationship('Order', backref='product', passive_deletes=True)
+    orders = db.relationship('Order', backref='service', passive_deletes=True)
 
     @staticmethod
     def add(name, price, uploaded_by):
-        _product = Product(name=name, price=price, uploaded_by=uploaded_by)
+        _service = Service(name=name, price=price, uploaded_by=uploaded_by)
 
-        db.session.add(_product)
+        db.session.add(_service)
         db.session.commit()
 
-        return _product
+        return _service
     
     @staticmethod
-    def edit(product_id: int, name=None, price=None):
-        _product: Product = Product.query.get(product_id)
+    def edit(service_id: int, name=None, price=None):
+        _service: Service = Service.query.get(service_id)
 
-        if _product is not None:
+        if _service is not None:
             print(name, price, "mk")
             if name is not None:
-                _product.name = name
+                _service.name = name
 
             if price is not None:
-                _product.price = price
+                _service.price = price
 
         db.session.commit()
 
-        return _product
+        return _service
     
     @staticmethod
-    def delete(product_id: int):
-        _product: Product = Product.query.get(product_id)
+    def delete(service_id: int):
+        _service: Service = Service.query.get(service_id)
 
-        if _product is not None:
+        if _service is not None:
 
-            db.session.delete(_product)
+            db.session.delete(_service)
 
             db.session.commit()
         
-        return _product
+        return _service

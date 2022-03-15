@@ -2,7 +2,7 @@
 {% set positive_status = ['APPROVED', 'READY', 'COLLECTED'] %}
 {% set negative_status = ['DISAPPROVED', 'CANCELLED'] %}
 
-{% macro product_order(order, status_modes) %}
+{% macro service_order(order, status_modes) %}
     {% if 'student_data' in session %}
         {{ student_view_order(order) }}
     {% elif 'staff_data' in session %}
@@ -15,20 +15,20 @@
 
     <tr>
         <td>
-            <p class="text-xs font-weight-bold mb-0">{{order.product.name}}</p>
+            <p class="text-xs font-weight-bold mb-0">{{order.service.name}}</p>
         </td>
 
         <td>
-            <p class="text-xs font-weight-bold mb-0">{{order.product.price}}</p>
+            <p class="text-xs font-weight-bold mb-0">{{order.service.price}}</p>
         </td>
 
         <td class="align-middle text-center text-sm">
             {% if order.status.tag in neutral_status %}
-                <span class="badge badge-sm bg-gradient-secondary">{{order.status.tag}}</span>
+                <span class="badge badge-sm bg-secondary">{{order.status.tag}}</span>
             {% elif order.status.tag in positive_status %}
-                <span class="badge badge-sm bg-gradient-primary">{{order.status.tag}}</span>
+                <span class="badge badge-sm bg-primary">{{order.status.tag}}</span>
             {% else %}
-                <span class="badge badge-sm bg-gradient-danger">{{order.status.tag}}</span>
+                <span class="badge badge-sm bg-danger">{{order.status.tag}}</span>
             {% endif %}
         </td>
 
@@ -47,11 +47,11 @@
         </td>
 
         <td>
-            <p class="text-xs font-weight-bold mb-0">{{order.product.name}}</p>
+            <p class="text-xs font-weight-bold mb-0">{{order.service.name}}</p>
         </td>
 
         <td>
-            <p class="text-xs font-weight-bold mb-0">{{order.product.price}}</p>
+            <p class="text-xs font-weight-bold mb-0">{{order.service.price}}</p>
         </td>
 
         <td>
@@ -82,10 +82,10 @@
     </tr>
 {% endmacro %}
 
-{% macro place_order(products) %}
+{% macro place_order(services) %}
     <script>
         var email = `{{session.student_data.email}}`
-        var product = {
+        var service = {
             id: 0,
             amount: 100,
             name: "",
@@ -101,10 +101,10 @@
 
         <option value="" selected>-- Select an Option --</option>
 
-        {% for product in products %}
-            <option value="{{product.id}}"
-                onclick="product.set(`{{product.id}}`, `{{product.price}}`, `{{product.name}}`)">
-                {{product.name}} - {{product.price}}
+        {% for service in services %}
+            <option value="{{service.id}}"
+                onclick="service.set(`{{service.id}}`, `{{service.price}}`, `{{service.name}}`)">
+                {{service.name}} - {{service.price}}
             </option>
         {% endfor %}
 
@@ -112,5 +112,5 @@
 
     <br />
 
-    <button class="btn btn-primary form-control" onclick="payWithPaystack(product, email)">Pay</button>
+    <button class="btn btn-primary form-control" onclick="payWithPaystack(service, email)">Pay</button>
 {% endmacro %}

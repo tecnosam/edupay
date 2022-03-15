@@ -1,5 +1,5 @@
 from app.models.student_models import Student
-from app.models.product_models import Product
+from app.models.service_models import Service
 from app.models.busary_models import BusaryStaff
 from app import db
 import sqlalchemy
@@ -18,7 +18,7 @@ def csv_load_wrapper(fn, table):
     return
 
 
-tables = {'student': Student, 'staff': BusaryStaff, 'product': Product}
+tables = {'student': Student, 'staff': BusaryStaff, 'service': Service}
 
 def load_test(row, table):
     try:
@@ -28,6 +28,6 @@ def load_test(row, table):
 
 
 def load_all():
-    csv_load_wrapper("app/test/products.csv", "product")
+    csv_load_wrapper("app/test/services.csv", "service")
     csv_load_wrapper("app/test/students.csv", "student")
     csv_load_wrapper("app/test/staff.csv", "staff")

@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 
 {% from 'macros/table-macros.html' import table_head %}
-{% from 'macros/order-macros.html' import product_order %}
+{% from 'macros/order-macros.html' import service_order %}
 
 {% block content %}
 
@@ -22,17 +22,17 @@
                         
                         {% if 'student_data' in session %}
                             
-                            {{ table_head(["Product", "Price", "Order Status", "Date", ""]) }}
+                            {{ table_head(["Service", "Price", "Order Status", "Date", ""]) }}
 
                         {% elif 'staff_data' in session %}
 
-                            {{ table_head(["Student", "Product", "Price", "Order Status", "Date", ""]) }}
+                            {{ table_head(["Student", "Service", "Price", "Order Status", "Date", ""]) }}
 
                         {% endif %}
 
                         <tbody style="text-align: center;">
                             {% for order in orders %}
-                                {{ product_order(order, status_modes) }}
+                                {{ service_order(order, status_modes) }}
                             {% endfor %}
                         </tbody>
 

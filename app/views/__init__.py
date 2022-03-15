@@ -10,7 +10,7 @@ def index():
         return redirect(url_for('orders'))
     
     elif 'staff_data' in session:
-        return redirect(url_for('products'))
+        return redirect(url_for('services'))
 
     return redirect(url_for('student_login'))
 

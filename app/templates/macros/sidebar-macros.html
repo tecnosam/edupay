@@ -45,10 +45,10 @@
             {% elif 'staff_data' in session %}
 
                 {{ sidebar_item('Orders', '/orders') }}
-                {{ sidebar_item('Products', '/products') }}
+                {{ sidebar_item('Services', '/services') }}
                 {{ sidebar_item('Logout', '/logout') }}
 
-                {{ big_button("Upload Product", "#upload_product", "modal") }}
+                {{ big_button("Upload Service", "#upload_service", "modal") }}
 
             {% endif %}
 
@@ -111,7 +111,7 @@
     <hr class="horizontal dark mt-0" />
 
     <li class="nav-item">
-        <a class="btn bg-gradient-primary mt-4 w-100" 
+        <a class="btn btn-primary mt-4 ml-1 w-95" 
             data-toggle="{{toggle}}" href="{{link}}" type="button">
             {{ tag }}
         </a>

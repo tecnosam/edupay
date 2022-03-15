@@ -49,18 +49,18 @@
     </div>
 {% endmacro %}
 
-{% macro edit_product(product) %}
+{% macro edit_service(service) %}
 
-    {% set product_form = [
-        {'name': 'id', 'type': 'hidden', 'default': product.id},
-        {'name': 'name', 'type': 'text', 'required': "true", 'label': 'Name', 'default': product.name},
-        {'name': 'price', 'type': 'number', 'required': "true", 'label': 'Price', 'default': product.price}
+    {% set service_form = [
+        {'name': 'id', 'type': 'hidden', 'default': service.id},
+        {'name': 'name', 'type': 'text', 'required': "true", 'label': 'Name', 'default': service.name},
+        {'name': 'price', 'type': 'number', 'required': "true", 'label': 'Price', 'default': service.price}
     ] %}
 
     {{ modal(
-        'edit_'+product.id.__str__(), 
-        product.name,
-        form('', product_form, 'Edit Product', 'PUT')
+        'edit_'+service.id.__str__(), 
+        service.name,
+        form('', service_form, 'Edit Service', 'PUT')
     ) }}
 
 {% endmacro %}
