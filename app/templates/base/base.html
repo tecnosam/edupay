@@ -9,12 +9,13 @@
 
     <head>
         <title>
-            EduPay - {% block window_title %} Welcome {% endblock window_title %}
+            BU Pay - {% block window_title %} Welcome {% endblock window_title %}
         </title>
 
         {{ header() }}
     </head>
 
+    {% block body %}
     <body class="g-sidenav-show  bg-gray-100">
 
 
@@ -74,5 +75,6 @@
 
         {{scripts()}}
     </body>
+    {% endblock body %}
 
 </html>
