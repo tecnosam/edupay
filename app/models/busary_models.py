@@ -1,6 +1,8 @@
 from app import db
 from datetime import datetime
 
+from hashlib import sha256
+
 
 class BusaryStaff(db.Model):
 
@@ -20,13 +22,17 @@ class BusaryStaff(db.Model):
 
     @staticmethod
     def auth(email: str, pwd: str):
-        _staff = BusaryStaff.query.filter_by(email=email, pwd=pwd).first()
+        _pwd = sha256(pwd.encode()).hexdigest()
+
+        _staff = BusaryStaff.query.filter_by(email=email, pwd=_pwd).first()
 
         return _staff
 
     @staticmethod
     def add(name, email, pwd):
-        _staff = BusaryStaff(name=name, email=email, pwd=pwd)
+        _pwd = sha256(pwd.encode()).hexdigest()
+
+        _staff = BusaryStaff(name=name, email=email, pwd=_pwd)
 
         db.session.add(_staff)
         db.session.commit()
@@ -38,7 +44,9 @@ class BusaryStaff(db.Model):
         _staff: BusaryStaff = BusaryStaff.query.get(staff_id)
 
         if _staff is not None:
-            _staff.pwd = pwd
+            _pwd = sha256(pwd.encode()).hexdigest()
+
+            _staff.pwd = _pwd
             db.session.commit()
 
         return _staff

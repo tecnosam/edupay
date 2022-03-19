@@ -1,6 +1,8 @@
 from app import db
 from datetime import datetime
 
+from hashlib import sha256
+
 
 class Student(db.Model):
 
@@ -20,13 +22,15 @@ class Student(db.Model):
 
     @staticmethod
     def auth(matric: str, pwd: str):
-        _student = Student.query.filter_by(matric=matric, pwd=pwd).first()
+        _pwd = sha256(pwd.encode()).hexdigest()
+        _student = Student.query.filter_by(matric=matric, pwd=_pwd).first()
 
         return _student
 
     @staticmethod
-    def add(name, email, matric, pwd):
-        _student = Student(name=name, email=email, matric=matric, pwd=pwd)
+    def add(name: str, email: str, matric: str, pwd: str):
+        _pwd = sha256(pwd.encode()).hexdigest()
+        _student = Student(name=name, email=email, matric=matric, pwd=_pwd)
 
         db.session.add(_student)
         db.session.commit()
@@ -38,7 +42,9 @@ class Student(db.Model):
         _student: Student = Student.query.get(student_id)
 
         if _student is not None:
-            _student.pwd = pwd
+            _pwd = sha256(pwd.encode()).hexdigest()
+
+            _student.pwd = _pwd
             db.session.commit()
 
         return _student
