@@ -4,6 +4,8 @@ from datetime import datetime
 
 class Service(db.Model):
 
+    __tablename__ = 'services'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     uploaded_by = db.Column(db.Integer, db.ForeignKey('busary_staff.id', ondelete='CASCADE'))

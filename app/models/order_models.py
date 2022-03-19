@@ -4,11 +4,13 @@ from datetime import datetime
 
 class Order(db.Model):
 
+    __tablename__ = 'orders'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    service_id = db.Column(db.Integer, db.ForeignKey('service.id', ondelete='CASCADE'))
+    service_id = db.Column(db.Integer, db.ForeignKey('services.id', ondelete='CASCADE'))
 
-    student_id = db.Column(db.Integer, db.ForeignKey('student.id', ondelete='CASCADE'))
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id', ondelete='CASCADE'))
 
     status_id = db.Column(db.Integer, db.ForeignKey('status.id', ondelete='CASCADE'), default=1)
 

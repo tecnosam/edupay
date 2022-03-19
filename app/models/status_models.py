@@ -5,6 +5,8 @@ from datetime import datetime
 
 class Status(db.Model):
 
+    __tablename__ = 'status'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     tag = db.Column(db.String(20), unique=True, nullable=False)

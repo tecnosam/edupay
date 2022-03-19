@@ -1,0 +1,47 @@
+// dbdiagram.io schema
+// https://dbdiagram.io/d/62364150bed6183873c3c1d2
+
+Table students {
+  id int PK
+  name varchar
+  email varchar
+  matric varchar
+  pwd varchar
+  date_created datetime
+}
+
+Table busary_staff {
+  id int PK
+  name varchar
+  email varchar
+  pwd varchar
+  date_created datetime
+}
+
+Table services {
+  id int PK
+  uploaded_by int
+  name varchar
+  price float8
+  date_created datetime
+}
+
+Ref: busary_staff.id < services.uploaded_by
+Ref: services.id < orders.service_id
+Ref: students.id < orders.student_id
+Ref: status.id < orders.status_id
+
+Table orders {
+  id int PK
+  service_id int
+  student_id int
+  status_id int
+  paystack_ref varchar
+  date_created datetime
+}
+
+Table status {
+  id int PK
+  tag varchar
+  date_created datetime
+}
