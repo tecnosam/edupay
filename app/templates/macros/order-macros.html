@@ -39,7 +39,7 @@
 {% endmacro %}
 
 {% macro staff_view_order(order, status_modes) %}
-    
+
     <tr>
 
         <td>
@@ -85,32 +85,36 @@
 {% macro place_order(services) %}
     <script>
         var email = `{{session.student_data.email}}`
-        var service = {
-            id: 0,
-            amount: 100,
-            name: "",
-            set: function(id, amount, name) {
-                this.id = id;
-                this.amount = amount;
-                this.name = name;
-            }
-        };
+        var services = [];
+
+        var service = 0;
+
+        var spawn_service = (id, amount, name) => {
+          return {id: id, amount: amount, name: name}
+        }
+
+        var set = id => {
+          service = id;
+        }
+
     </script>
 
-    <select class="form-control" required>
+    <select class="form-control" onchange="set(this.value)" required>
 
         <option value="" selected>-- Select an Option --</option>
 
         {% for service in services %}
-            <option value="{{service.id}}"
-                onclick="service.set(`{{service.id}}`, `{{service.price}}`, `{{service.name}}`)">
+            <option value="{{service.id}}">
                 {{service.name}} - {{service.price}}
             </option>
+            <script>
+              services.push(spawn_service(`{{service.id}}`, `{{service.price}}`, `{{service.name}}`))
+            </script>
         {% endfor %}
 
     </select>
 
     <br />
 
-    <button class="btn btn-primary form-control" onclick="payWithPaystack(service, email)">Pay</button>
+    <button class="btn btn-primary form-control" onclick="payWithPaystack(services[service], email)">Pay</button>
 {% endmacro %}

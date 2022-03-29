@@ -27,7 +27,7 @@ def orders():
 
     status_modes = Status.query.all()
 
-    return render_template('pages/orders.html', 
+    return render_template('pages/orders.html',
         services=services, orders=orders, status_modes=status_modes)
 
 @flask_app.route("/services/<service_id>/place-order/<reference>")
@@ -54,5 +54,5 @@ def place_order(service_id, reference):
     else:
         # it did not pass the default checks
         flash("Your Payment is Invalid")
-    
+
     return redirect(url_for('orders'))

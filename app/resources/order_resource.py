@@ -19,7 +19,7 @@ def validate_payment(reference, service_id):
 
     if response.status_code != 200:
         return False
-    
+
     data = response.json()['data']
 
     service = Service.query.get(service_id)

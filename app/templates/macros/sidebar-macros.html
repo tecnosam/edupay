@@ -37,14 +37,14 @@
             {{ sidebar_item('Edit Profile', '#edit_profile', 'modal') }}
             {% if 'student_data' in session %}
 
-                {{ sidebar_item('Orders', '/orders') }}
+                {{ sidebar_item('Service Orders', '/orders') }}
                 {{ sidebar_item('Logout', '/logout') }}
 
-                {{ big_button("Place Order", "#place_order", "modal") }}
+                {{ big_button("Place Service Order", "#place_order", "modal") }}
 
             {% elif 'staff_data' in session %}
 
-                {{ sidebar_item('Orders', '/orders') }}
+                {{ sidebar_item('Service Orders', '/orders') }}
                 {{ sidebar_item('Services', '/services') }}
                 {{ sidebar_item('Logout', '/logout') }}
 
