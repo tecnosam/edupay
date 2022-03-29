@@ -116,5 +116,5 @@
 
     <br />
 
-    <button class="btn btn-primary form-control" onclick="payWithPaystack(services[service], email)">Pay</button>
+    <button class="btn btn-primary form-control" onclick="payWithPaystack(services.find(s => s.id==service), email)">Pay</button>
 {% endmacro %}
